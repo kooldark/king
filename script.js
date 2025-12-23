@@ -246,25 +246,41 @@ function renderCart() {
         let total = 0;
         cart.forEach((item, index) => {
             const li = document.createElement('li');
+            li.className = 'cart-item';
             
             let optionsText = '';
             if (Object.keys(item.options).length > 0) {
-                optionsText = ' - ' + Object.values(item.options).join(', ');
+                optionsText = '<div class="cart-item-options">' + 
+                    Object.entries(item.options)
+                        .map(([type, choice]) => `<span class="option-tag">${choice}</span>`)
+                        .join('') + 
+                    '</div>';
             }
             
-            const removeBtn = document.createElement('button');
-            removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
-            removeBtn.style.background = '#E74C3C';
-            removeBtn.style.color = 'white';
-            removeBtn.style.border = 'none';
-            removeBtn.style.padding = '6px 12px';
-            removeBtn.style.borderRadius = '4px';
-            removeBtn.style.cursor = 'pointer';
-            removeBtn.style.fontSize = '0.8em';
-            removeBtn.addEventListener('click', () => removeFromCart(index));
+            const itemContent = document.createElement('div');
+            itemContent.className = 'cart-item-content';
+            itemContent.innerHTML = `
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    ${optionsText}
+                    <div class="cart-item-price">${item.price}k</div>
+                </div>
+                <div class="cart-item-controls">
+                    <div class="cart-quantity-control">
+                        <button class="cart-qty-btn" onclick="decreaseItemQty(${index})">−</button>
+                        <span class="cart-qty-display">1</span>
+                        <button class="cart-qty-btn" onclick="increaseItemQty(${index})">+</button>
+                    </div>
+                    <button class="cart-edit-btn" title="Sửa" onclick="editCartItem(${index})">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="cart-delete-btn" title="Xóa" onclick="removeFromCart(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
             
-            li.innerHTML = `<span>${item.name}${optionsText}</span>`;
-            li.appendChild(removeBtn);
+            li.appendChild(itemContent);
             cartList.appendChild(li);
             
             total += item.price * 1000;
@@ -272,6 +288,101 @@ function renderCart() {
         
         document.getElementById('total-price').textContent = total.toLocaleString('vi-VN');
     }
+}
+
+function increaseItemQty(index) {
+    if (index < cart.length) {
+        cart.splice(index, 0, { ...cart[index] });
+        updateCartUI();
+    }
+}
+
+function decreaseItemQty(index) {
+    if (index < cart.length) {
+        cart.splice(index, 1);
+        if (cart.length === 0) {
+            renderCart();
+        } else {
+            updateCartUI();
+        }
+    }
+}
+
+function editCartItem(index) {
+    if (index >= cart.length) return;
+    
+    const item = cart[index];
+    const dish = allDishes.find(d => d.id === item.id);
+    
+    if (!dish || !dish.options || dish.options.length === 0) {
+        alert('Món này không có tùy chọn để chỉnh sửa');
+        return;
+    }
+    
+    // Create edit modal
+    const modal = document.createElement('div');
+    modal.className = 'edit-modal';
+    modal.innerHTML = `
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h3>Sửa: ${item.name}</h3>
+                <button class="edit-modal-close" onclick="this.closest('.edit-modal').remove()">&times;</button>
+            </div>
+            <div class="edit-modal-body" id="edit-options-container">
+                ${dish.options.map((option, optIdx) => {
+                    const currentChoice = item.options[option.type];
+                    return `
+                        <div class="edit-option-group">
+                            <label>${option.type}</label>
+                            <select class="edit-option-select" data-option="${optIdx}">
+                                ${option.choices.map((choice, choiceIdx) => `
+                                    <option value="${choiceIdx}" 
+                                            data-price="${choice.price}"
+                                            ${choice.name === currentChoice ? 'selected' : ''}>
+                                        ${choice.name} ${choice.price > 0 ? `(+${choice.price}k)` : ''}
+                                    </option>
+                                `).join('')}
+                            </select>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+            <div class="edit-modal-footer">
+                <button class="edit-cancel-btn" onclick="this.closest('.edit-modal').remove()">Hủy</button>
+                <button class="edit-save-btn" onclick="saveEditedItem(${index})">Lưu Thay Đổi</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Store reference for saving
+    window.editingItemIndex = index;
+    window.editingDish = dish;
+}
+
+function saveEditedItem(index) {
+    const dish = window.editingDish;
+    const oldPrice = cart[index].basePrice;
+    let newPrice = oldPrice;
+    const newOptions = {};
+    
+    dish.options.forEach((option, idx) => {
+        const select = document.querySelector(`.edit-option-select[data-option="${idx}"]`);
+        if (select) {
+            const choiceIdx = parseInt(select.value);
+            const selectedChoice = option.choices[choiceIdx];
+            newOptions[option.type] = selectedChoice.name;
+            newPrice += selectedChoice.price;
+        }
+    });
+    
+    cart[index].price = newPrice;
+    cart[index].options = newOptions;
+    
+    document.querySelector('.edit-modal').remove();
+    updateCartUI();
+    showNotification('✓ Cập nhật thành công');
 }
 
 function removeFromCart(index) {
@@ -370,20 +481,27 @@ completeOrderBtn.addEventListener('click', () => {
     }
 
     orderText += 'Nhà hàng KING\n';
-    orderText += '☎️ Gọi: 0123456789\n';
+    orderText += '☎️ Gọi: 0327933609\n';
     orderText += 'Cảm ơn bạn đã đặt hàng!\n';
 
     navigator.clipboard.writeText(orderText).then(() => {
-        showNotification('✓ Đơn hàng đã copy! Dán vào Zalo để gửi');
+        showNotification('✓ Đơn hàng đã copy! Đang mở Zalo...');
+        
         setTimeout(() => {
-            cart = [];
-            notesInput.value = '';
-            updateCartUI();
-            cartSection.classList.add('hidden');
-        }, 1500);
+            // Open Zalo with the number
+            window.open('https://zalo.me/0327933609', '_blank');
+            
+            setTimeout(() => {
+                cart = [];
+                notesInput.value = '';
+                updateCartUI();
+                cartSection.classList.add('hidden');
+            }, 500);
+        }, 800);
     }).catch(err => {
         console.error('Lỗi copy:', err);
-        alert('Không thể copy đơn hàng. Vui lòng thử lại!');
+        alert('Không thể copy đơn hàng. Nhưng sẽ mở Zalo cho bạn!');
+        window.open('https://zalo.me/0327933609', '_blank');
     });
 });
 
