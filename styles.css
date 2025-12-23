@@ -101,13 +101,13 @@ header {
 }
 
 .cart-btn:hover {
-    transform: translateY(-2px);
+    transform: scale(1.02) translateY(-3px);
     box-shadow: var(--shadow-lg);
     background: linear-gradient(135deg, var(--secondary-light) 0%, #FFF4A8 100%);
 }
 
 .cart-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 .cart-badge {
@@ -196,11 +196,17 @@ main {
 .filter-btn:hover {
     background: var(--secondary);
     color: var(--white);
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.filter-btn:active {
+    transform: scale(0.95); /* Slightly scale down on click */
 }
 
 .filter-btn.active {
     background: var(--secondary);
     color: var(--white);
+    transform: scale(1); /* Ensure active state doesn't scale on its own */
 }
 
 /* ============ MENU SECTION ============ */
@@ -331,11 +337,11 @@ main {
 }
 
 .option-label {
-    font-size: 0.85em;
-    font-weight: 600;
+    display: block;
+    font-weight: 700;
     color: var(--primary);
     margin-bottom: 6px;
-    display: block;
+    font-size: 0.85em;
 }
 
 .option-select {
@@ -393,6 +399,11 @@ main {
 .qty-btn:hover {
     background: var(--secondary);
     color: var(--white);
+    transform: scale(1.1); /* Slightly larger on hover */
+}
+
+.qty-btn:active {
+    transform: scale(0.9); /* Slightly smaller on click */
 }
 
 .qty-input {
@@ -426,13 +437,13 @@ main {
 }
 
 .add-to-cart-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px); /* More pronounced lift */
     box-shadow: var(--shadow-md);
     background: linear-gradient(135deg, var(--primary-dark) 0%, #4B0F07 100%);
 }
 
 .add-to-cart-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98); /* Slight scale down on click */
 }
 
 /* ============ CART SECTION ============ */
@@ -498,7 +509,11 @@ main {
 
 .close-btn:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.2); /* Rotate and slightly scale up on hover */
+}
+
+.close-btn:active {
+    transform: rotate(90deg) scale(0.9); /* Slightly scale down on click */
 }
 
 #cart-content {
@@ -607,15 +622,11 @@ main {
 .cart-qty-btn:hover {
     background: var(--secondary);
     color: var(--white);
+    transform: scale(1.1); /* Slightly larger on hover */
 }
 
-.cart-qty-display {
-    width: 32px;
-    text-align: center;
-    font-weight: 600;
-    color: var(--primary);
-    border: none;
-    background: transparent;
+.cart-qty-btn:active {
+    transform: scale(0.9); /* Slightly smaller on click */
 }
 
 .cart-edit-btn {
@@ -638,6 +649,10 @@ main {
     box-shadow: var(--shadow-sm);
 }
 
+.cart-edit-btn:active {
+    transform: scale(0.9);
+}
+
 .cart-delete-btn {
     width: 32px;
     height: 32px;
@@ -656,6 +671,10 @@ main {
 .cart-delete-btn:hover {
     transform: scale(1.1);
     box-shadow: var(--shadow-sm);
+}
+
+.cart-delete-btn:active {
+    transform: scale(0.9);
 }
 
 /* ============ EDIT MODAL ============ */
@@ -713,6 +732,10 @@ main {
 
 .edit-modal-close:hover {
     transform: scale(1.2);
+}
+
+.edit-modal-close:active {
+    transform: scale(0.9);
 }
 
 .edit-modal-body {
@@ -875,8 +898,12 @@ main {
 }
 
 .btn-secondary:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px); /* More pronounced lift */
     box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98); /* Slight scale down on click */
 }
 
 .btn-primary {
@@ -896,12 +923,12 @@ main {
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px); /* More pronounced lift */
     box-shadow: var(--shadow-lg);
 }
 
 .btn-primary:active {
-    transform: translateY(0);
+    transform: scale(0.98); /* Slight scale down on click */
 }
 
 /* ============ FOOTER ============ */
@@ -1098,6 +1125,10 @@ footer {
 
 .saved-orders-close:hover {
     transform: scale(1.2);
+}
+
+.saved-orders-close:active {
+    transform: scale(0.9);
 }
 
 .saved-orders-list {
