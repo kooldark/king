@@ -2,7 +2,10 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#8B2E26">
     <title>NHÀ HÀNG KING - Menu Cao Cấp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -12,15 +15,19 @@
     <header>
         <div class="header-content">
             <div class="logo-section">
-                <h1><i class="fas fa-crown"></i> NHÀ HÀNG KING</h1>
-                <p class="tagline">Dê sạch truyền thống – Cao sản tuyển chọn</p>
-                <p class="sub-tagline">An tâm nguyên liệu – Trọn vẹn buổi tiệc</p>
+                <h1><i class="fas fa-crown"></i> <span id="logo-text">NHÀ HÀNG KING</span></h1>
+                <p class="tagline" id="tagline-text">Dê sạch truyền thống – Cao sản tuyển chọn</p>
             </div>
-            <button id="view-cart" class="cart-btn">
-                <i class="fas fa-shopping-cart"></i> 
-                <span>Đơn Hàng</span>
-                <span id="cart-count" class="cart-badge">0</span>
-            </button>
+            <div class="header-controls">
+                <button id="toggle-compact" class="toggle-btn" title="Chế độ gọn gàng">
+                    <i class="fas fa-compress-alt"></i>
+                </button>
+                <button id="view-cart" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i> 
+                    <span id="cart-text">Đơn Hàng</span>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -68,10 +75,16 @@
                     <textarea id="notes" class="notes-input" placeholder="Ghi chú thêm (tuỳ chọn)..." rows="3"></textarea>
                     <div class="cart-actions">
                         <button id="save-order-btn" class="btn-secondary">
-                            <i class="fas fa-save"></i> Lưu Đơn
+                            <i class="fas fa-save"></i> Lưu Nháp
                         </button>
                         <button id="load-order-btn" class="btn-secondary">
-                            <i class="fas fa-history"></i> Tải Lại
+                            <i class="fas fa-history"></i> Tải
+                        </button>
+                        <button id="view-history-btn" class="btn-secondary">
+                            <i class="fas fa-list"></i> Lịch sử
+                        </button>
+                        <button id="clear-cart-btn" class="btn-secondary btn-danger">
+                            <i class="fas fa-trash"></i> Xóa
                         </button>
                     </div>
                     <button id="complete-order" class="btn-primary">
@@ -87,7 +100,7 @@
             <div class="footer-info">
                 <h3>NHÀ HÀNG KING</h3>
                 <p><i class="fas fa-phone"></i> 0327933609</p>
-                <p><i class="fas fa-map-marker-alt"></i> Bình Sơn - Quảng Ngãi</p>
+                <p><i class="fas fa-map-marker-alt"></i> Ngã 3 Trà Bồng, Xã Bình Sơn, Quảng Ngãi</p>
             </div>
             <div class="footer-note">
                 <p>© 1999 - Nhà Hàng KING</p>

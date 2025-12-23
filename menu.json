@@ -6,6 +6,7 @@
     "description": "Thịt dê nấu với củ tươi, nước dùng thơm lừng",
     "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Dê+Nấu+Củ",
     "basePrice": 200,
+    "bestseller": true,
     "options": [
       {
         "type": "Kích thước",
@@ -60,6 +61,7 @@
     "description": "Lẩu dê tứ túc bổ dưỡng với nhiều cách chế biến",
     "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tứ+Túc",
     "basePrice": 300,
+    "bestseller": true,
     "options": [
       {
         "type": "Loại chế biến",
@@ -74,18 +76,19 @@
   {
     "id": 5,
     "category": "Thịt Dê Nấu Khô",
-    "name": "Luộc Dê Cắt Khô",
-    "description": "Thịt dê luộc tươi, cắt vừa ăn, thơm ngon",
+    "name": "Thịt Dê Tươi ",
+    "description": "Thịt dê tươi, mới chế biến, thơm ngon",
     "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Luộc+Dê",
     "basePrice": 50,
+    "bestseller": true,
     "options": [
       {
         "type": "Khối lượng",
         "choices": [
-          { "name": "1 lạng (50g)", "price": 50 },
-          { "name": "2 lạng (100g)", "price": 100 },
-          { "name": "5 lạng (250g)", "price": 250 },
-          { "name": "10 lạng (500g)", "price": 500 }
+          { "name": "1 lạng ", "price": 50 },
+          { "name": "3 lạng ", "price": 150 },
+          { "name": "5 lạng ", "price": 250 },
+          { "name": "1 kilogram", "price": 500 }
         ]
       },
       {
@@ -104,17 +107,15 @@
     "id": 6,
     "category": "Thịt Dê Nấu Khô",
     "name": "Sườn Dê Nướng",
-    "description": "Sườn dê nướng vàng ươn, thơm bùng",
+    "description": "Sườn dê nướng vàng ươn, thơm bùng - giá từ 180k ",
     "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Sườn+Dê",
     "basePrice": 180,
+    "bestseller": true,
     "options": [
       {
         "type": "Khối lượng",
         "choices": [
-          { "name": "1 lạng", "price": 180 },
-          { "name": "2 lạng", "price": 360 },
-          { "name": "5 lạng", "price": 900 },
-          { "name": "10 lạng (500g)", "price": 1800 }
+          { "name": "1 phần", "price": 250 }
         ]
       }
     ]
@@ -126,12 +127,13 @@
     "description": "Tiết canh tươi ngon, tốt cho sức khỏe",
     "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tiết+Canh",
     "basePrice": 25,
+    "bestseller": true,
     "options": [
       {
         "type": "Kích thước",
         "choices": [
-          { "name": "Chén (~1 người)", "price": 25 },
-          { "name": "Tô (~2 người)", "price": 40 },
+          { "name": "Chén nhỏ", "price": 25 },
+          { "name": "Tô ", "price": 40 },
           { "name": "Dĩa (~3 người)", "price": 120 }
         ]
       }
