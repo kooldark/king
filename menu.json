@@ -1,8 +1,26 @@
 [
   {
     "id": 1,
-    "category": "Lẩu Dê",
-    "name": "Lẩu Dê Nướng",
+    "category": "Dê Món Nước",
+    "name": "Dê Nấu Củ",
+    "description": "Thịt dê nấu với củ tươi, nước dùng thơm lừng",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Dê+Nấu+Củ",
+    "basePrice": 200,
+    "options": [
+      {
+        "type": "Kích thước",
+        "choices": [
+          { "name": "Nhỏ (~2 người)", "price": 150 },
+          { "name": "Vừa (~4 người)", "price": 200 },
+          { "name": "Lớn (~6 người)", "price": 250 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Dê Món Nước",
+    "name": "Lẩu Dê",
     "description": "Lẩu dê tươi ngon nấu với nước dùng thơm lừng",
     "image": "/assets/1-lau-de-nuong.jpg",
     "basePrice": 200,
@@ -10,33 +28,51 @@
       {
         "type": "Kích thước",
         "choices": [
-          { "name": "Nồi Nhỏ (~2 người)", "price": 150 },
-          { "name": "Nồi Vừa (~4 người)", "price": 200 },
-          { "name": "Nồi Lớn (~6 người)", "price": 250 }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "category": "Lẩu Dê",
-    "name": "Lẩu Dê Tử Túc",
-    "description": "Lẩu dê nấu với đậu đen, củ, hạt sen bổ dưỡng",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Lẩu+Dê+Tử+Túc",
-    "basePrice": 300,
-    "options": [
-      {
-        "type": "Kích thước",
-        "choices": [
-          { "name": "Nồi Nhỏ", "price": 250 },
-          { "name": "Nồi Vừa", "price": 300 },
-          { "name": "Nồi Lớn", "price": 350 }
+          { "name": "Nhỏ (~2 người)", "price": 150 },
+          { "name": "Vừa (~4 người)", "price": 200 },
+          { "name": "Lớn (~6 người)", "price": 250 }
         ]
       }
     ]
   },
   {
     "id": 3,
+    "category": "Dê Món Nước",
+    "name": "Dê Nấu Nấm",
+    "description": "Thịt dê nấu với các loại nấm, vị ngon đặc biệt",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Dê+Nấu+Nấm",
+    "basePrice": 220,
+    "options": [
+      {
+        "type": "Kích thước",
+        "choices": [
+          { "name": "Nhỏ (~2 người)", "price": 180 },
+          { "name": "Vừa (~4 người)", "price": 220 },
+          { "name": "Lớn (~6 người)", "price": 280 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Dê Món Nước",
+    "name": "Tứ Túc",
+    "description": "Lẩu dê tứ túc bổ dưỡng với nhiều cách chế biến",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tứ+Túc",
+    "basePrice": 300,
+    "options": [
+      {
+        "type": "Loại chế biến",
+        "choices": [
+          { "name": "Nấu đậu đen", "price": 300 },
+          { "name": "Nấu củ", "price": 300 },
+          { "name": "Nấu hạt sen", "price": 300 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 5,
     "category": "Thịt Dê Nấu Khô",
     "name": "Luộc Dê Cắt Khô",
     "description": "Thịt dê luộc tươi, cắt vừa ăn, thơm ngon",
@@ -65,7 +101,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 6,
     "category": "Thịt Dê Nấu Khô",
     "name": "Sườn Dê Nướng",
     "description": "Sườn dê nướng vàng ươn, thơm bùng",
@@ -84,7 +120,7 @@
     ]
   },
   {
-    "id": 5,
+    "id": 7,
     "category": "Lòng & Tiết",
     "name": "Tiết Canh Dê",
     "description": "Tiết canh tươi ngon, tốt cho sức khỏe",
@@ -102,7 +138,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 8,
     "category": "Lòng & Tiết",
     "name": "Lòng Dê Xào Nghệ",
     "description": "Lòng dê xào với nghệ vàng, ấm bụng",
@@ -120,7 +156,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 9,
     "category": "Lòng & Tiết",
     "name": "Ngọc Dương",
     "description": "Đặc sản quý hiếm, bổ máu, tốt cho sức khỏe",
@@ -137,7 +173,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 10,
     "category": "Đồ Uống",
     "name": "Bia Heineken",
     "description": "Bia nhập khẩu chính hãng, lạnh mát",
@@ -153,7 +189,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 11,
     "category": "Đồ Uống",
     "name": "Bia Tiger",
     "description": "Bia Tiger mát lạnh, hương vị đặc trưng",
@@ -169,7 +205,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 12,
     "category": "Đồ Uống",
     "name": "Rượu Ngọc Dương",
     "description": "Rượu dê quý, bổ máu và sức khỏe",
@@ -186,7 +222,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 13,
     "category": "Đồ Uống",
     "name": "Rượu Cao Dê",
     "description": "Rượu cao dê tươi, hương vị đặc biệt",
@@ -203,7 +239,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 14,
     "category": "Đồ Uống",
     "name": "Nước Ngọt",
     "description": "Coca, Bò húc mát lạnh",
@@ -220,7 +256,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 15,
     "category": "Đồ Uống",
     "name": "Nước Suối",
     "description": "Nước suối tinh khiết, mát lạnh",
@@ -236,7 +272,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 16,
     "category": "Món Kèm",
     "name": "Khăn Lạnh",
     "description": "Khăn lạnh sạch sẽ cho khách",
@@ -252,7 +288,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 17,
     "category": "Món Kèm",
     "name": "Bánh Tráng",
     "description": "Bánh tráng nóng, giòn tan",
@@ -269,7 +305,7 @@
     ]
   },
   {
-    "id": 16,
+    "id": 18,
     "category": "Món Kèm",
     "name": "Bún",
     "description": "Bún tươi, được thêm vào lẩu",
@@ -285,7 +321,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 19,
     "category": "Món Kèm",
     "name": "Trái Cây Tươi",
     "description": "Trái cây theo mùa, tươi ngon",
@@ -304,7 +340,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 20,
     "category": "Dịch Vụ",
     "name": "Phòng Lạnh / Phòng Gia Đình",
     "description": "Phòng riêng, điều hòa mát mẻ",
@@ -321,7 +357,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 21,
     "category": "Dịch Vụ",
     "name": "Phí Phục Vụ Bia Mang Vào",
     "description": "Phí phục vụ nếu khách mang bia ngoài vào",

@@ -162,7 +162,7 @@ function createDishCard(dish) {
             </div>
             
             <button class="add-to-cart-btn" onclick="addToCart(${dish.id})">
-                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                <i class="fas fa-shopping-cart"></i> Gọi món này
             </button>
         </div>
     `;
@@ -223,7 +223,7 @@ function addToCart(dishId) {
     }
 
     updateCartUI();
-    showNotification(`✓ ${dish.name} x${quantity} đã thêm vào giỏ`);
+    showNotification(`✓ ${dish.name} x${quantity} đã gọi`);
 }
 
 // ============ CART MANAGEMENT ============
