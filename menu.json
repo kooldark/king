@@ -1,146 +1,339 @@
 [
   {
-    "Nhóm": "Thịt Dê Món Nước",
-    "Tên món / Dịch vụ": "Lẩu Dê, Dê nấu Củ, Dê nấu Nấm +2",
-    "Quy cách / Phân loại": "Nồi Lớn",
-    "Giá tiền": "250k"
+    "id": 1,
+    "category": "Lẩu Dê",
+    "name": "Lẩu Dê Nướng",
+    "description": "Lẩu dê tươi ngon nấu với nước dùng thơm lừng",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Lẩu+Dê",
+    "basePrice": 200,
+    "options": [
+      {
+        "type": "Kích thước",
+        "choices": [
+          { "name": "Nồi Nhỏ (~2 người)", "price": 150 },
+          { "name": "Nồi Vừa (~4 người)", "price": 200 },
+          { "name": "Nồi Lớn (~6 người)", "price": 250 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "",
-    "Quy cách / Phân loại": "Nồi Vừa",
-    "Giá tiền": "200k"
+    "id": 2,
+    "category": "Lẩu Dê",
+    "name": "Lẩu Dê Tử Túc",
+    "description": "Lẩu dê nấu với đậu đen, củ, hạt sen bổ dưỡng",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Lẩu+Dê+Tử+Túc",
+    "basePrice": 300,
+    "options": [
+      {
+        "type": "Kích thước",
+        "choices": [
+          { "name": "Nồi Nhỏ", "price": 250 },
+          { "name": "Nồi Vừa", "price": 300 },
+          { "name": "Nồi Lớn", "price": 350 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "",
-    "Quy cách / Phân loại": "Nồi Nhỏ (~2 người ăn)",
-    "Giá tiền": "150k"
+    "id": 3,
+    "category": "Thịt Dê Nấu Khô",
+    "name": "Luộc Dê Cắt Khô",
+    "description": "Thịt dê luộc tươi, cắt vừa ăn, thơm ngon",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Luộc+Dê",
+    "basePrice": 50,
+    "options": [
+      {
+        "type": "Khối lượng",
+        "choices": [
+          { "name": "1 lạng (50g)", "price": 50 },
+          { "name": "2 lạng (100g)", "price": 100 },
+          { "name": "5 lạng (250g)", "price": 250 },
+          { "name": "10 lạng (500g)", "price": 500 }
+        ]
+      },
+      {
+        "type": "Cách chế biến",
+        "choices": [
+          { "name": "Luộc", "price": 0 },
+          { "name": "Hấp sả", "price": 0 },
+          { "name": "Xào sả", "price": 0 },
+          { "name": "Xông hơi", "price": 0 },
+          { "name": "Nướng", "price": 0 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Dê Tử Túc (Nấu Đậu đen, Củ, Hạt sen) +2",
-    "Quy cách / Phân loại": "Theo nồi",
-    "Giá tiền": "300k"
+    "id": 4,
+    "category": "Thịt Dê Nấu Khô",
+    "name": "Sườn Dê Nướng",
+    "description": "Sườn dê nướng vàng ươn, thơm bùng",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Sườn+Dê",
+    "basePrice": 180,
+    "options": [
+      {
+        "type": "Khối lượng",
+        "choices": [
+          { "name": "1 lạng", "price": 180 },
+          { "name": "2 lạng", "price": 360 },
+          { "name": "5 lạng", "price": 900 },
+          { "name": "10 lạng (500g)", "price": 1800 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "Thịt Dê Nấu Khô",
-    "Tên món / Dịch vụ": "Luộc cắt khổ, Hấp sả, Xào sả, Xông hơi, Nướng +4",
-    "Quy cách / Phân loại": "1 lạng (kèm chế biến)",
-    "Giá tiền": "50k"
+    "id": 5,
+    "category": "Lòng & Tiết",
+    "name": "Tiết Canh Dê",
+    "description": "Tiết canh tươi ngon, tốt cho sức khỏe",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tiết+Canh",
+    "basePrice": 25,
+    "options": [
+      {
+        "type": "Kích thước",
+        "choices": [
+          { "name": "Chén (~1 người)", "price": 25 },
+          { "name": "Tô (~2 người)", "price": 40 },
+          { "name": "Dĩa (~3 người)", "price": 120 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Sườn Dê Nướng ( tính theo lạng )",
-    "Quy cách / Phân loại": "Dĩa",
-    "Giá tiền": "Từ 180k "
+    "id": 6,
+    "category": "Lòng & Tiết",
+    "name": "Lòng Dê Xào Nghệ",
+    "description": "Lòng dê xào với nghệ vàng, ấm bụng",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Lòng+Xào",
+    "basePrice": 120,
+    "options": [
+      {
+        "type": "Cách chế biến",
+        "choices": [
+          { "name": "Xào nghệ", "price": 120 },
+          { "name": "Luộc", "price": 120 },
+          { "name": "Đẳng", "price": 180 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "",
-    "Quy cách / Phân loại": "",
-    "Giá tiền": ""
+    "id": 7,
+    "category": "Lòng & Tiết",
+    "name": "Ngọc Dương",
+    "description": "Đặc sản quý hiếm, bổ máu, tốt cho sức khỏe",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Ngọc+Dương",
+    "basePrice": 350,
+    "options": [
+      {
+        "type": "Kích thước",
+        "choices": [
+          { "name": "Vừa", "price": 350 },
+          { "name": "Lớn", "price": 450 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "",
-    "Quy cách / Phân loại": "",
-    "Giá tiền": ""
+    "id": 8,
+    "category": "Đồ Uống",
+    "name": "Bia Heineken",
+    "description": "Bia nhập khẩu chính hãng, lạnh mát",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Heineken",
+    "basePrice": 22,
+    "options": [
+      {
+        "type": "Dung tích",
+        "choices": [
+          { "name": "Lon 330ml", "price": 22 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "Lòng & Tiết Canh",
-    "Tên món / Dịch vụ": "Tiết canh",
-    "Quy cách / Phân loại": "Dĩa / Tô / Chén +1",
-    "Giá tiền": "120k / 40k / 25k +1"
+    "id": 9,
+    "category": "Đồ Uống",
+    "name": "Bia Tiger",
+    "description": "Bia Tiger mát lạnh, hương vị đặc trưng",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tiger",
+    "basePrice": 20,
+    "options": [
+      {
+        "type": "Dung tích",
+        "choices": [
+          { "name": "Lon 330ml", "price": 20 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Lòng Dê (Xào nghệ, Luộc, Đẳng) +1",
-    "Quy cách / Phân loại": "Theo phần",
-    "Giá tiền": "120k | 150k | 180k"
+    "id": 10,
+    "category": "Đồ Uống",
+    "name": "Rượu Ngọc Dương",
+    "description": "Rượu dê quý, bổ máu và sức khỏe",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Rượu",
+    "basePrice": 40,
+    "options": [
+      {
+        "type": "Dung tích",
+        "choices": [
+          { "name": "330ml", "price": 40 },
+          { "name": "500ml", "price": 60 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Ngọc Dương (Món ăn)",
-    "Quy cách / Phân loại": "Theo kích thước",
-    "Giá tiền": "350k - 450k"
+    "id": 11,
+    "category": "Đồ Uống",
+    "name": "Rượu Cao Dê",
+    "description": "Rượu cao dê tươi, hương vị đặc biệt",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Cao+Dê",
+    "basePrice": 80,
+    "options": [
+      {
+        "type": "Dung tích",
+        "choices": [
+          { "name": "330ml", "price": 80 },
+          { "name": "500ml", "price": 120 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "Giải Khát",
-    "Tên món / Dịch vụ": "Bia Heniken",
-    "Quy cách / Phân loại": "Lon",
-    "Giá tiền": "22k"
+    "id": 12,
+    "category": "Đồ Uống",
+    "name": "Nước Ngọt",
+    "description": "Coca, Bò húc mát lạnh",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Nước+Ngọt",
+    "basePrice": 10,
+    "options": [
+      {
+        "type": "Loại",
+        "choices": [
+          { "name": "Coca/Sprite/Fanta", "price": 10 },
+          { "name": "Bò húc", "price": 15 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Bia Tiger",
-    "Quy cách / Phân loại": "Lon",
-    "Giá tiền": "20k"
+    "id": 13,
+    "category": "Đồ Uống",
+    "name": "Nước Suối",
+    "description": "Nước suối tinh khiết, mát lạnh",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Nước+Suối",
+    "basePrice": 6,
+    "options": [
+      {
+        "type": "Dung tích",
+        "choices": [
+          { "name": "Chai 500ml", "price": 6 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Rượu Ngọc Dương",
-    "Quy cách / Phân loại": "330ml / 500ml +1",
-    "Giá tiền": "40k / 60k +1"
+    "id": 14,
+    "category": "Món Kèm",
+    "name": "Khăn Lạnh",
+    "description": "Khăn lạnh sạch sẽ cho khách",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Khăn+Lạnh",
+    "basePrice": 2,
+    "options": [
+      {
+        "type": "Số lượng",
+        "choices": [
+          { "name": "1 cái", "price": 2 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Rượu Cao Dê",
-    "Quy cách / Phân loại": "330ml / 500ml +1",
-    "Giá tiền": "80k / 120k +1"
+    "id": 15,
+    "category": "Món Kèm",
+    "name": "Bánh Tráng",
+    "description": "Bánh tráng nóng, giòn tan",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Bánh",
+    "basePrice": 4,
+    "options": [
+      {
+        "type": "Loại",
+        "choices": [
+          { "name": "Bánh tráng", "price": 4 },
+          { "name": "Bánh mỳ", "price": 4 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Rượu Chuối",
-    "Quy cách / Phân loại": "330ml / 500ml +1",
-    "Giá tiền": "30k / 50k +1"
+    "id": 16,
+    "category": "Món Kèm",
+    "name": "Bún",
+    "description": "Bún tươi, được thêm vào lẩu",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Bún",
+    "basePrice": 10,
+    "options": [
+      {
+        "type": "Kích thước",
+        "choices": [
+          { "name": "Dĩa", "price": 10 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Nước ngọt (Coca, Bò húc) +1",
-    "Quy cách / Phân loại": "Lon +1",
-    "Giá tiền": "10k - 15k +1"
+    "id": 17,
+    "category": "Món Kèm",
+    "name": "Trái Cây Tươi",
+    "description": "Trái cây theo mùa, tươi ngon",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Trái+Cây",
+    "basePrice": 50,
+    "options": [
+      {
+        "type": "Loại",
+        "choices": [
+          { "name": "Dâu tây", "price": 100 },
+          { "name": "Nho", "price": 80 },
+          { "name": "Xoài", "price": 50 },
+          { "name": "Cam", "price": 40 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Nước suối",
-    "Quy cách / Phân loại": "Chai",
-    "Giá tiền": "6k"
+    "id": 18,
+    "category": "Dịch Vụ",
+    "name": "Phòng Lạnh / Phòng Gia Đình",
+    "description": "Phòng riêng, điều hòa mát mẻ",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Phòng",
+    "basePrice": 50,
+    "options": [
+      {
+        "type": "Loại",
+        "choices": [
+          { "name": "Phòng lạnh", "price": 50 },
+          { "name": "Phòng gia đình", "price": 50 }
+        ]
+      }
+    ]
   },
   {
-    "Nhóm": "Món Ăn Kèm",
-    "Tên món / Dịch vụ": "Khăn lạnh",
-    "Quy cách / Phân loại": "Cái",
-    "Giá tiền": "2k"
-  },
-  {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Bánh tráng / Bánh mỳ +1",
-    "Quy cách / Phân loại": "Cái",
-    "Giá tiền": "4k"
-  },
-  {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Bún",
-    "Quy cách / Phân loại": "Dĩa",
-    "Giá tiền": "10k"
-  },
-  {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Trái cây",
-    "Quy cách / Phân loại": "Dĩa theo loại",
-    "Giá tiền": "50k - 100k"
-  },
-  {
-    "Nhóm": "Dịch Vụ Khác",
-    "Tên món / Dịch vụ": "Phòng lạnh / Phòng gia đình",
-    "Quy cách / Phân loại": "Lần sử dụng",
-    "Giá tiền": "50k"
-  },
-  {
-    "Nhóm": "",
-    "Tên món / Dịch vụ": "Phụ thu phí phục vụ bia mang vào",
-    "Quy cách / Phân loại": "Lần sử dụng",
-    "Giá tiền": "50k"
+    "id": 19,
+    "category": "Dịch Vụ",
+    "name": "Phí Phục Vụ Bia Mang Vào",
+    "description": "Phí phục vụ nếu khách mang bia ngoài vào",
+    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Phí+Phục+Vụ",
+    "basePrice": 50,
+    "options": [
+      {
+        "type": "Số lần",
+        "choices": [
+          { "name": "Mỗi lần phục vụ", "price": 50 }
+        ]
+      }
+    ]
   }
 ]
