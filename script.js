@@ -514,6 +514,99 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// ============ SAVE/LOAD ORDERS ============
+function saveOrder() {
+    if (cart.length === 0) {
+        showNotification('❌ Giỏ hàng trống, không thể lưu!');
+        return;
+    }
+
+    const orders = JSON.parse(localStorage.getItem('savedOrders') || '[]');
+    const orderData = {
+        id: Date.now(),
+        timestamp: new Date().toLocaleString('vi-VN'),
+        cart: JSON.parse(JSON.stringify(cart)),
+        notes: notesInput.value,
+        total: document.getElementById('total-price').textContent
+    };
+    
+    orders.unshift(orderData);
+    localStorage.setItem('savedOrders', JSON.stringify(orders));
+    showNotification('✓ Đơn hàng đã lưu!');
+}
+
+function loadOrders() {
+    const orders = JSON.parse(localStorage.getItem('savedOrders') || '[]');
+    
+    const modal = document.createElement('div');
+    modal.className = 'saved-orders-modal';
+    
+    let ordersHTML = '';
+    if (orders.length === 0) {
+        ordersHTML = '<div class="saved-orders-empty"><p>Chưa có đơn hàng nào được lưu</p></div>';
+    } else {
+        ordersHTML = '<div class="saved-orders-list">' + orders.map((order, idx) => `
+            <div class="saved-order-item">
+                <div class="saved-order-info">
+                    <div class="saved-order-date">📅 ${order.timestamp}</div>
+                    <div class="saved-order-total">💰 ${order.total} VND</div>
+                    ${order.notes ? `<div class="saved-order-note">"${order.notes}"</div>` : ''}
+                </div>
+                <div class="saved-order-controls">
+                    <button class="saved-order-load-btn" onclick="loadOrderData(${idx})">
+                        <i class="fas fa-redo"></i> Tải
+                    </button>
+                    <button class="saved-order-delete-btn" onclick="deleteSavedOrder(${idx})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('') + '</div>';
+    }
+    
+    modal.innerHTML = `
+        <div class="saved-orders-content">
+            <div class="saved-orders-header">
+                <h3>📋 Các Đơn Hàng Đã Lưu</h3>
+                <button class="saved-orders-close" onclick="this.closest('.saved-orders-modal').remove()">&times;</button>
+            </div>
+            ${ordersHTML}
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+
+function loadOrderData(index) {
+    const orders = JSON.parse(localStorage.getItem('savedOrders') || '[]');
+    if (index < 0 || index >= orders.length) return;
+    
+    const order = orders[index];
+    cart = JSON.parse(JSON.stringify(order.cart));
+    notesInput.value = order.notes || '';
+    
+    document.querySelector('.saved-orders-modal').remove();
+    updateCartUI();
+    showNotification('✓ Đơn hàng đã được tải lại!');
+    cartSection.classList.remove('hidden');
+}
+
+function deleteSavedOrder(index) {
+    if (!confirm('Bạn chắc chắn muốn xóa đơn hàng này?')) return;
+    
+    const orders = JSON.parse(localStorage.getItem('savedOrders') || '[]');
+    orders.splice(index, 1);
+    localStorage.setItem('savedOrders', JSON.stringify(orders));
+    loadOrders(); // Reload modal
+    showNotification('✓ Đơn hàng đã xóa');
+}
+
+const saveOrderBtn = document.getElementById('save-order-btn');
+const loadOrderBtn = document.getElementById('load-order-btn');
+
+if (saveOrderBtn) saveOrderBtn.addEventListener('click', saveOrder);
+if (loadOrderBtn) loadOrderBtn.addEventListener('click', loadOrders);
+
 // ============ INITIALIZE ============
 document.addEventListener('DOMContentLoaded', () => {
     renderMenu();

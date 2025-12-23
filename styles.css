@@ -851,6 +851,34 @@ main {
     box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
 }
 
+.cart-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-secondary {
+    padding: 10px;
+    background: linear-gradient(135deg, #7F8C8D 0%, #616D7F 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
 .btn-primary {
     width: 100%;
     background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
@@ -1016,4 +1044,155 @@ footer {
 /* ============ UTILITIES ============ */
 .hidden {
     display: none !important;
+}
+
+/* ============ SAVED ORDERS MODAL ============ */
+.saved-orders-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+.saved-orders-content {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    max-width: 500px;
+    width: 90%;
+    max-height: 70vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+.saved-orders-header {
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saved-orders-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.saved-orders-close {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.saved-orders-close:hover {
+    transform: scale(1.2);
+}
+
+.saved-orders-list {
+    padding: 20px;
+}
+
+.saved-order-item {
+    background: linear-gradient(135deg, #FAFAF8 0%, #F5F1E8 100%);
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: var(--transition);
+}
+
+.saved-order-item:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateX(4px);
+}
+
+.saved-order-info {
+    flex: 1;
+}
+
+.saved-order-date {
+    font-size: 0.8em;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.saved-order-total {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 4px;
+}
+
+.saved-order-note {
+    font-size: 0.85em;
+    color: var(--text-light);
+    margin-top: 4px;
+    font-style: italic;
+}
+
+.saved-order-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.saved-order-load-btn {
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #27AE60 0%, #229954 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.saved-order-load-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-sm);
+}
+
+.saved-order-delete-btn {
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.saved-order-delete-btn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-sm);
+}
+
+.saved-orders-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
 }
