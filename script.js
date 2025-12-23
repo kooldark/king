@@ -370,12 +370,15 @@ function renderCart() {
         cartEmpty.style.display = 'flex';
     } else {
         cartEmpty.style.display = 'none';
-        cartList.innerHTML = '';
         
         let total = 0;
+        // Store existing items for comparison
+        const existingItems = Array.from(cartList.querySelectorAll('.cart-item'));
+        
         cart.forEach((item, index) => {
-            const li = document.createElement('li');
-            li.className = 'cart-item';
+            const existingItem = existingItems[index];
+            const quantity = item.quantity || 1;
+            const subtotal = item.price * quantity;
             
             let optionsText = '';
             if (Object.keys(item.options).length > 0) {
@@ -386,37 +389,49 @@ function renderCart() {
                     '</div>';
             }
             
-            const quantity = item.quantity || 1;
-            const subtotal = item.price * quantity;
-            
-            const itemContent = document.createElement('div');
-            itemContent.className = 'cart-item-content';
-            itemContent.innerHTML = `
-                <div class="cart-item-info">
-                    <div class="cart-item-name">${item.name}</div>
-                    ${optionsText}
-                    <div class="cart-item-price">${item.price}k × ${quantity} = ${subtotal}k</div>
-                </div>
-                <div class="cart-item-controls">
-                    <div class="cart-quantity-control">
-                        <button class="cart-qty-btn" onclick="decreaseItemQty(${index})">−</button>
-                        <span class="cart-qty-display">${quantity}</span>
-                        <button class="cart-qty-btn" onclick="increaseItemQty(${index})">+</button>
+            const itemHTML = `
+                <div class="cart-item-content">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        ${optionsText}
+                        <div class="cart-item-price">${item.price}k × ${quantity} = ${subtotal}k</div>
                     </div>
-                    <button class="cart-edit-btn" title="Sửa" onclick="editCartItem(${index})">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="cart-delete-btn" title="Xóa" onclick="removeFromCart(${index})">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                    <div class="cart-item-controls">
+                        <div class="cart-quantity-control">
+                            <button class="cart-qty-btn" data-action="decrease" data-index="${index}">−</button>
+                            <span class="cart-qty-display">${quantity}</span>
+                            <button class="cart-qty-btn" data-action="increase" data-index="${index}">+</button>
+                        </div>
+                        <button class="cart-edit-btn" title="Sửa" data-action="edit" data-index="${index}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="cart-delete-btn" title="Xóa" data-action="delete" data-index="${index}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
             `;
             
-            li.appendChild(itemContent);
-            cartList.appendChild(li);
+            if (existingItem) {
+                // Update existing item instead of replacing
+                existingItem.innerHTML = itemHTML;
+            } else {
+                // Create new item
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+                li.innerHTML = itemHTML;
+                cartList.appendChild(li);
+            }
             
             total += subtotal * 1000;
         });
+        
+        // Remove items that no longer exist (if cart was reduced)
+        if (existingItems.length > cart.length) {
+            for (let i = cart.length; i < existingItems.length; i++) {
+                existingItems[i].remove();
+            }
+        }
         
         document.getElementById('total-price').textContent = total.toLocaleString('vi-VN');
     }
@@ -621,8 +636,29 @@ closeCartBtn.addEventListener('click', () => {
 });
 
 document.addEventListener('click', (e) => {
+    // Only close cart if clicking outside of it (not on buttons within cart)
     if (!cartSection.contains(e.target) && e.target !== viewCartBtn && !viewCartBtn.contains(e.target)) {
         toggleCart(false);
+    }
+    
+    // Handle cart item button clicks with event delegation
+    if (cartSection.contains(e.target)) {
+        const btn = e.target.closest('[data-action]');
+        if (btn) {
+            e.stopPropagation(); // Prevent bubbling to document listener
+            const action = btn.dataset.action;
+            const index = parseInt(btn.dataset.index);
+            
+            if (action === 'increase') {
+                increaseItemQty(index);
+            } else if (action === 'decrease') {
+                decreaseItemQty(index);
+            } else if (action === 'edit') {
+                editCartItem(index);
+            } else if (action === 'delete') {
+                removeFromCart(index);
+            }
+        }
     }
 });
 
