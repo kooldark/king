@@ -12,43 +12,13 @@ const searchInput = document.getElementById('search-input');
 const cartCount = document.getElementById('cart-count');
 const completeOrderBtn = document.getElementById('complete-order');
 const notesInput = document.getElementById('notes');
-const toggleCompactBtn = document.getElementById('toggle-compact');
 
 // State
 let allDishes = [];
 let filteredDishes = [];
 let cart = [];
 let selectedCategory = 'all';
-let isCompactMode = localStorage.getItem('compactMode') === 'true';
-let customerInfo = JSON.parse(localStorage.getItem('customerInfo') || '{"name":"","phone":"","address":""}');
 let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
-// Auto-enable compact mode on small mobile
-const isSmallMobile = window.innerWidth <= 480;
-if (isSmallMobile && !localStorage.getItem('compactMode')) {
-    isCompactMode = true;
-}
-
-// ============ COMPACT MODE TOGGLE ============
-function initCompactMode() {
-    if (isCompactMode) {
-        document.body.classList.add('compact');
-        toggleCompactBtn.classList.add('active');
-    }
-}
-
-toggleCompactBtn.addEventListener('click', () => {
-    isCompactMode = !isCompactMode;
-    localStorage.setItem('compactMode', isCompactMode);
-    
-    if (isCompactMode) {
-        document.body.classList.add('compact');
-        toggleCompactBtn.classList.add('active');
-    } else {
-        document.body.classList.remove('compact');
-        toggleCompactBtn.classList.remove('active');
-    }
-});
 
 // ============ FETCH MENU DATA ============
 async function fetchMenuData() {
@@ -194,13 +164,17 @@ function createDishCard(dish) {
             optionsHTML += `
                 <div class="option-group">
                     <label class="option-label">${option.type}</label>
-                    <select class="option-select" data-option="${idx}">
+                    <div class="option-buttons">
                         ${option.choices.map((choice, choiceIdx) => `
-                            <option value="${choiceIdx}" data-price="${choice.price}">
-                                ${choice.name} ${choice.price > 0 ? `(+${choice.price}k)` : ''}
-                            </option>
+                            <button class="option-btn ${choiceIdx === 0 ? 'active' : ''}" 
+                                    data-option="${idx}" 
+                                    data-choice="${choiceIdx}" 
+                                    data-price="${choice.price}"
+                                    onclick="selectOption(event, ${idx}, ${choiceIdx})">
+                                ${choice.name} ${choice.price > 0 ? `+${choice.price}k` : ''}
+                            </button>
                         `).join('')}
-                    </select>
+                    </div>
                 </div>
             `;
         });
@@ -221,25 +195,25 @@ function createDishCard(dish) {
             </button>
         </div>
         <div class="dish-content">
-            <div class="dish-category">${dish.category}</div>
             <h3 class="dish-name">${dish.name}</h3>
             <p class="dish-description">${dish.description}</p>
-            <div class="dish-price">${dish.basePrice}k</div>
             
             ${optionsHTML}
             
-            <div class="dish-quantity">
-                <span class="quantity-label">Số lượng</span>
-                <div class="quantity-control">
-                    <button class="qty-btn" onclick="decreaseQty('dish-${dish.id}')">−</button>
-                    <input type="number" class="qty-input" value="1" min="1" max="99" onchange="updateQty('dish-${dish.id}')">
-                    <button class="qty-btn" onclick="increaseQty('dish-${dish.id}')">+</button>
+            <div class="dish-footer">
+                <div class="dish-quantity">
+                    <span class="quantity-label">Số lượng</span>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="decreaseQty('dish-${dish.id}')">−</button>
+                        <input type="number" class="qty-input" value="1" min="1" max="99" onchange="updateQty('dish-${dish.id}')">
+                        <button class="qty-btn" onclick="increaseQty('dish-${dish.id}')">+</button>
+                    </div>
                 </div>
+                
+                <button class="add-to-cart-btn" onclick="addToCart(${dish.id})">
+                    <i class="fas fa-shopping-cart"></i> Gọi món
+                </button>
             </div>
-            
-            <button class="add-to-cart-btn" onclick="addToCart(${dish.id})">
-                <i class="fas fa-shopping-cart"></i> Gọi món này
-            </button>
         </div>
     `;
 
@@ -264,6 +238,27 @@ function toggleFavorite(dishId) {
     if (btn) {
         btn.classList.toggle('active');
     }
+}
+
+// ============ OPTION SELECTION ============
+function selectOption(event, optionIdx, choiceIdx) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const clickedBtn = event.target.closest('.option-btn');
+    if (!clickedBtn) return;
+    
+    // Get the option group
+    const optionGroup = clickedBtn.closest('.option-group');
+    if (!optionGroup) return;
+    
+    // Remove active class from all buttons in this group
+    optionGroup.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Add active class to clicked button
+    clickedBtn.classList.add('active');
 }
 
 // ============ QUANTITY CONTROLS ============
@@ -310,21 +305,29 @@ function addToCart(dishId) {
 
         const quantity = Math.max(1, parseInt(card.querySelector('.qty-input').value) || 1);
         const selectedOptions = {};
-        let totalPrice = dish.basePrice;
+        let totalPrice = 0;
 
-        // Get selected options
+        // Get selected options - price in options is the final price, not additional
         if (dish.options && dish.options.length > 0) {
             dish.options.forEach((option, idx) => {
-                const select = card.querySelector(`[data-option="${idx}"]`);
-                if (select) {
-                    const choiceIdx = parseInt(select.value);
+                const activeBtn = card.querySelector(`[data-option="${idx}"].active`);
+                if (activeBtn) {
+                    const choiceIdx = parseInt(activeBtn.getAttribute('data-choice'));
                     const selectedChoice = option.choices[choiceIdx];
                     if (selectedChoice) {
                         selectedOptions[option.type] = selectedChoice.name;
-                        totalPrice += selectedChoice.price;
+                        totalPrice = selectedChoice.price;  // Use the choice price as final price
                     }
+                } else if (option.choices && option.choices.length > 0) {
+                    // Default to first choice if no selection
+                    const selectedChoice = option.choices[0];
+                    selectedOptions[option.type] = selectedChoice.name;
+                    totalPrice = selectedChoice.price;  // Use the choice price as final price
                 }
             });
+        } else {
+            // No options, use base price
+            totalPrice = dish.basePrice;
         }
 
         // Add to cart - merge if same item with same options
@@ -680,104 +683,8 @@ function isValidAddress(address) {
     return address.trim().length >= 5;
 }
 
-// ============ SHOW CUSTOMER INFO FORM ============
-function showCustomerForm() {
-    const modal = document.createElement('div');
-    modal.className = 'customer-form-modal';
-    
-    modal.innerHTML = `
-        <div class="customer-form-content">
-            <div class="customer-form-header">
-                <h3>📋 Thông Tin Giao Hàng</h3>
-                <button class="customer-form-close" onclick="this.closest('.customer-form-modal').remove()">&times;</button>
-            </div>
-            <form id="customer-form" class="customer-form">
-                <div class="form-group">
-                    <label for="customer-name">👤 Tên khách hàng *</label>
-                    <input type="text" id="customer-name" placeholder="Nhập tên của bạn" value="${customerInfo.name || ''}" required>
-                    <span class="form-error" id="name-error"></span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customer-phone">📱 Số điện thoại *</label>
-                    <input type="tel" id="customer-phone" placeholder="Ví dụ: 0912345678" value="${customerInfo.phone || ''}" required>
-                    <span class="form-error" id="phone-error"></span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customer-address">📍 Địa chỉ giao hàng *</label>
-                    <textarea id="customer-address" placeholder="Nhập địa chỉ đầy đủ" rows="3">${customerInfo.address || ''}</textarea>
-                    <span class="form-error" id="address-error"></span>
-                </div>
-                
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="save-info" checked>
-                        Lưu thông tin cho lần sau
-                    </label>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" onclick="this.closest('.customer-form-modal').remove()">Hủy</button>
-                    <button type="submit" class="btn-primary">Tiếp tục</button>
-                </div>
-            </form>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    const form = document.getElementById('customer-form');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        processCustomerForm(modal);
-    });
-}
-
-// ============ PROCESS CUSTOMER FORM ============
-function processCustomerForm(modal) {
-    const name = document.getElementById('customer-name').value.trim();
-    const phone = document.getElementById('customer-phone').value.trim();
-    const address = document.getElementById('customer-address').value.trim();
-    const saveInfo = document.getElementById('save-info').checked;
-    
-    // Clear errors
-    document.getElementById('name-error').textContent = '';
-    document.getElementById('phone-error').textContent = '';
-    document.getElementById('address-error').textContent = '';
-    
-    let isValid = true;
-    
-    // Validate
-    if (!name || name.length < 2) {
-        document.getElementById('name-error').textContent = '❌ Tên phải từ 2 ký tự trở lên';
-        isValid = false;
-    }
-    
-    if (!isValidPhone(phone)) {
-        document.getElementById('phone-error').textContent = '❌ Số điện thoại không hợp lệ (VD: 0912345678)';
-        isValid = false;
-    }
-    
-    if (!isValidAddress(address)) {
-        document.getElementById('address-error').textContent = '❌ Địa chỉ phải từ 5 ký tự trở lên';
-        isValid = false;
-    }
-    
-    if (!isValid) return;
-    
-    // Save info if checked
-    if (saveInfo) {
-        customerInfo = { name, phone, address };
-        localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
-    }
-    
-    modal.remove();
-    completeOrderProcess(name, phone, address);
-}
-
 // ============ COMPLETE ORDER PROCESS ============
-function completeOrderProcess(customerName, customerPhone, customerAddress) {
+function completeOrderProcess() {
     if (cart.length === 0) {
         alert('Vui lòng chọn ít nhất 1 món ăn');
         return;
@@ -786,12 +693,7 @@ function completeOrderProcess(customerName, customerPhone, customerAddress) {
     let orderText = '═════════════════════════════════════\n';
     orderText += '      ĐƠN HÀNG NHÀ HÀNG KING\n';
     orderText += '═════════════════════════════════════\n\n';
-    
-    // Customer info
-    orderText += '👤 KHÁCH HÀNG:\n';
-    orderText += `   Tên: ${customerName}\n`;
-    orderText += `   SĐT: ${customerPhone}\n`;
-    orderText += `   Địa chỉ: ${customerAddress}\n\n`;
+    orderText += '🍖 ĐƠN ĂN TẠI NHÀ HÀNG\n\n';
     
     // Order items
     orderText += '📦 ĐƠN HÀNG:\n';
@@ -817,17 +719,12 @@ function completeOrderProcess(customerName, customerPhone, customerAddress) {
         itemCount += quantity;
     });
 
-    const deliveryFee = 0; // Default
-    const total = (subtotal + deliveryFee) * 1000;
+    const total = subtotal * 1000;
 
     orderText += '─────────────────────────────────────\n';
     orderText += `Tổng số món: ${itemCount}\n`;
-    orderText += `Tiền hàng: ${subtotal.toLocaleString('vi-VN')}k\n`;
-    if (deliveryFee > 0) {
-        orderText += `Phí giao hàng: ${deliveryFee.toLocaleString('vi-VN')}k\n`;
-    }
     orderText += '─────────────────────────────────────\n';
-    orderText += `💵 TỔNG TIỀN: ${total.toLocaleString('vi-VN')} VND\n`;
+    orderText += `💵 TỔNG TIỀN: ${subtotal.toLocaleString('vi-VN')}k (${total.toLocaleString('vi-VN')} VND)\n`;
     orderText += '═════════════════════════════════════\n\n';
 
     if (notesInput.value.trim()) {
@@ -842,8 +739,8 @@ function completeOrderProcess(customerName, customerPhone, customerAddress) {
     orderText += 'Cảm ơn bạn đã đặt hàng!\n';
     orderText += '═════════════════════════════════════\n';
 
-    // Save order to history
-    saveOrderToHistory(customerName, customerPhone, customerAddress, subtotal, deliveryFee, total);
+    // Auto save to history
+    saveOrderToHistory(subtotal, total, timestamp);
 
     navigator.clipboard.writeText(orderText).then(() => {
         showNotification('✓ Đơn hàng đã copy! Đang mở Zalo...');
@@ -866,26 +763,22 @@ function completeOrderProcess(customerName, customerPhone, customerAddress) {
 }
 
 // ============ SAVE ORDER TO HISTORY ============
-function saveOrderToHistory(customerName, customerPhone, customerAddress, subtotal, deliveryFee, total) {
+function saveOrderToHistory(subtotal, total, timestamp) {
     try {
         const orders = JSON.parse(localStorage.getItem('orderHistory') || '[]');
         const newOrder = {
             id: Date.now(),
-            timestamp: new Date().toLocaleString('vi-VN'),
-            customerName,
-            customerPhone,
-            customerAddress,
+            timestamp: timestamp,
             items: JSON.parse(JSON.stringify(cart)),
             subtotal,
-            deliveryFee,
             total,
             notes: notesInput.value,
-            status: 'pending'
+            status: 'completed'
         };
         
         orders.unshift(newOrder);
-        // Keep only last 50 orders
-        if (orders.length > 50) orders.splice(50);
+        // Keep only last 100 orders
+        if (orders.length > 100) orders.splice(100);
         localStorage.setItem('orderHistory', JSON.stringify(orders));
     } catch (err) {
         console.error('Lỗi lưu lịch sử đơn hàng:', err);
@@ -898,7 +791,7 @@ completeOrderBtn.addEventListener('click', () => {
         showNotification('❌ Vui lòng chọn ít nhất 1 món ăn');
         return;
     }
-    showCustomerForm();
+    completeOrderProcess();
 });
 
 // ============ EVENT LISTENERS ============
@@ -1152,7 +1045,6 @@ function copyOrderInfo(index) {
 
 // ============ INITIALIZE ============
 document.addEventListener('DOMContentLoaded', () => {
-    initCompactMode();
     renderMenu();
     initLazyLoading();
 });

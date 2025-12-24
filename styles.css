@@ -498,23 +498,23 @@ body.compact .dish-description {
 }
 
 .dish-price {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 700;
     color: var(--secondary);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 body.compact .dish-price {
     font-size: 1.05em;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .dish-options {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .option-group {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .option-label {
@@ -522,7 +522,38 @@ body.compact .dish-price {
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 4px;
+    font-size: 0.7em;
+}
+
+.option-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.option-btn {
+    padding: 4px 10px;
+    border: 1.5px solid #DDD;
+    border-radius: 18px;
     font-size: 0.75em;
+    background: #FAFAFA;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.option-btn:hover {
+    border-color: var(--secondary);
+    background: #F0F0F0;
+}
+
+.option-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
 }
 
 .option-select {
@@ -544,18 +575,24 @@ body.compact .dish-price {
     outline: none;
 }
 
+.dish-footer {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
 .dish-quantity {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 4px;
+    flex: 1;
 }
 
 .quantity-label {
-    font-size: 0.75em;
+    font-size: 0.65em;
     font-weight: 600;
     color: var(--primary);
-    flex: 1;
+    white-space: nowrap;
 }
 
 .quantity-control {
@@ -567,35 +604,35 @@ body.compact .dish-price {
 }
 
 .qty-btn {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     border: none;
     background: transparent;
     color: var(--primary);
     cursor: pointer;
     font-weight: bold;
     transition: var(--transition);
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 .qty-btn:hover {
     background: var(--secondary);
     color: var(--white);
-    transform: scale(1.1); /* Slightly larger on hover */
+    transform: scale(1.1);
 }
 
 .qty-btn:active {
-    transform: scale(0.9); /* Slightly smaller on click */
+    transform: scale(0.9);
 }
 
 .qty-input {
-    width: 35px;
+    width: 26px;
     text-align: center;
     border: none;
     background: transparent;
     font-weight: 600;
     color: var(--primary);
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 .qty-input:focus {
@@ -603,20 +640,21 @@ body.compact .dish-price {
 }
 
 .add-to-cart-btn {
-    width: 100%;
-    padding: 10px;
+    flex: 1;
+    padding: 7px 8px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: var(--white);
     border: none;
     border-radius: 6px;
     font-weight: 700;
     cursor: pointer;
-    font-size: 0.95em;
+    font-size: 0.85em;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 3px;
+    white-space: nowrap;
 }
 
 .add-to-cart-btn:hover {

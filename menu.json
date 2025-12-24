@@ -4,7 +4,7 @@
     "category": "Dê Món Nước",
     "name": "Dê Nấu Củ",
     "description": "Thịt dê nấu với củ tươi, nước dùng thơm lừng",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Dê+Nấu+Củ",
+    "image": "/assets/1-lau-de-nuong.png",
     "basePrice": 200,
     "bestseller": true,
     "options": [
@@ -23,7 +23,7 @@
     "category": "Dê Món Nước",
     "name": "Lẩu Dê",
     "description": "Lẩu dê tươi ngon nấu với nước dùng thơm lừng",
-    "image": "/assets/1-lau-de-nuong.jpg",
+    "image": "/assets/1-lau-de-nuong.png",
     "basePrice": 200,
     "options": [
       {
@@ -41,7 +41,7 @@
     "category": "Dê Món Nước",
     "name": "Dê Nấu Nấm",
     "description": "Thịt dê nấu với các loại nấm, vị ngon đặc biệt",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Dê+Nấu+Nấm",
+    "image": "/assets/2-lau-de-tu-tuc.png",
     "basePrice": 220,
     "options": [
       {
@@ -59,16 +59,16 @@
     "category": "Dê Món Nước",
     "name": "Tứ Túc",
     "description": "Lẩu dê tứ túc bổ dưỡng với nhiều cách chế biến",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tứ+Túc",
+    "image": "/assets/2-lau-de-tu-tuc.png",
     "basePrice": 300,
     "bestseller": true,
     "options": [
       {
         "type": "Loại chế biến",
         "choices": [
-          { "name": "Nấu đậu đen", "price": 300 },
-          { "name": "Nấu củ", "price": 300 },
-          { "name": "Nấu hạt sen", "price": 300 }
+          { "name": "Nấu đậu đen" },
+          { "name": "Nấu củ" },
+          { "name": "Nấu hạt sen" }
         ]
       }
     ]
@@ -78,7 +78,7 @@
     "category": "Thịt Dê Nấu Khô",
     "name": "Thịt Dê Tươi ",
     "description": "Thịt dê tươi, mới chế biến, thơm ngon",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Luộc+Dê",
+    "image": "/assets/3-luoc-de-cat-kho.png",
     "basePrice": 50,
     "bestseller": true,
     "options": [
@@ -108,7 +108,7 @@
     "category": "Thịt Dê Nấu Khô",
     "name": "Sườn Dê Nướng",
     "description": "Sườn dê nướng vàng ươn, thơm bùng - giá từ 180k ",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Sườn+Dê",
+    "image": "/assets/4-suon-de-nuong.png",
     "basePrice": 180,
     "bestseller": true,
     "options": [
@@ -125,7 +125,7 @@
     "category": "Lòng & Tiết",
     "name": "Tiết Canh Dê",
     "description": "Tiết canh tươi ngon, tốt cho sức khỏe",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tiết+Canh",
+    "image": "/assets/5-tiet-canh-de.png",
     "basePrice": 25,
     "bestseller": true,
     "options": [
@@ -144,7 +144,7 @@
     "category": "Lòng & Tiết",
     "name": "Lòng Dê Xào Nghệ",
     "description": "Lòng dê xào với nghệ vàng, ấm bụng",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Lòng+Xào",
+    "image": "/assets/6-long-de-xao-nge.png",
     "basePrice": 120,
     "options": [
       {
@@ -162,7 +162,7 @@
     "category": "Lòng & Tiết",
     "name": "Ngọc Dương",
     "description": "Đặc sản quý hiếm, bổ máu, tốt cho sức khỏe",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Ngọc+Dương",
+    "image": "/assets/7-ngoc-duong.png",
     "basePrice": 350,
     "options": [
       {
@@ -179,13 +179,14 @@
     "category": "Đồ Uống",
     "name": "Bia Heineken",
     "description": "Bia nhập khẩu chính hãng, lạnh mát",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Heineken",
+    "image": "/assets/8-bia-heineken.png",
     "basePrice": 22,
     "options": [
       {
         "type": "Dung tích",
         "choices": [
-          { "name": "Lon 330ml", "price": 22 }
+          { "name": "Lon 330ml", "price": 22 },
+          { "name": "1 thùng", "price": 480 }
         ]
       }
     ]
@@ -195,7 +196,7 @@
     "category": "Đồ Uống",
     "name": "Bia Tiger",
     "description": "Bia Tiger mát lạnh, hương vị đặc trưng",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Tiger",
+    "image": "/assets/9-bia-tiger.png",
     "basePrice": 20,
     "options": [
       {
@@ -211,7 +212,7 @@
     "category": "Đồ Uống",
     "name": "Rượu Ngọc Dương",
     "description": "Rượu dê quý, bổ máu và sức khỏe",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Rượu",
+    "image": "/assets/12-sting.png",
     "basePrice": 40,
     "options": [
       {
@@ -228,7 +229,7 @@
     "category": "Đồ Uống",
     "name": "Rượu Cao Dê",
     "description": "Rượu cao dê tươi, hương vị đặc biệt",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Cao+Dê",
+    "image": "/assets/13-nuoc-lon.png",
     "basePrice": 80,
     "options": [
       {
@@ -245,13 +246,13 @@
     "category": "Đồ Uống",
     "name": "Nước Ngọt",
     "description": "Coca, Bò húc mát lạnh",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Nước+Ngọt",
+    "image": "/assets/10-coca-cola.png",
     "basePrice": 10,
     "options": [
       {
         "type": "Loại",
         "choices": [
-          { "name": "Coca/Sprite/Fanta", "price": 10 },
+          { "name": "Cocacola", "price": 10 },
           { "name": "Bò húc", "price": 15 }
         ]
       }
@@ -262,7 +263,7 @@
     "category": "Đồ Uống",
     "name": "Nước Suối",
     "description": "Nước suối tinh khiết, mát lạnh",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Nước+Suối",
+    "image": "/assets/11-pepsi.png",
     "basePrice": 6,
     "options": [
       {
@@ -278,7 +279,7 @@
     "category": "Món Kèm",
     "name": "Khăn Lạnh",
     "description": "Khăn lạnh sạch sẽ cho khách",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Khăn+Lạnh",
+    "image": "/assets/14-dung-tung-dua.png",
     "basePrice": 2,
     "options": [
       {
@@ -294,7 +295,7 @@
     "category": "Món Kèm",
     "name": "Bánh Tráng",
     "description": "Bánh tráng nóng, giòn tan",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Bánh",
+    "image": "/assets/1-lau-de-nuong.png",
     "basePrice": 4,
     "options": [
       {
@@ -311,7 +312,7 @@
     "category": "Món Kèm",
     "name": "Bún",
     "description": "Bún tươi, được thêm vào lẩu",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Bún",
+    "image": "/assets/2-lau-de-tu-tuc.png",
     "basePrice": 10,
     "options": [
       {
@@ -327,7 +328,7 @@
     "category": "Món Kèm",
     "name": "Trái Cây Tươi",
     "description": "Trái cây theo mùa, tươi ngon",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Trái+Cây",
+    "image": "/assets/3-luoc-de-cat-kho.png",
     "basePrice": 50,
     "options": [
       {
@@ -346,7 +347,7 @@
     "category": "Dịch Vụ",
     "name": "Phòng Lạnh / Phòng Gia Đình",
     "description": "Phòng riêng, điều hòa mát mẻ",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Phòng",
+    "image": "/assets/4-suon-de-nuong.png",
     "basePrice": 50,
     "options": [
       {
@@ -363,7 +364,7 @@
     "category": "Dịch Vụ",
     "name": "Phí Phục Vụ Bia Mang Vào",
     "description": "Phí phục vụ nếu khách mang bia ngoài vào",
-    "image": "https://via.placeholder.com/300x250/8B3A3A/D4AF37?text=Phí+Phục+Vụ",
+    "image": "/assets/5-tiet-canh-de.png",
     "basePrice": 50,
     "options": [
       {
